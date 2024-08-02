@@ -41,7 +41,6 @@ const spin = document.querySelector('.spin')
 spin.addEventListener('click', function () {
 	if (saldo < 1000) {
 		alert('Saldo tidak cukup untuk bermain!')
-		return
 	}
 
 	saldo -= 1000
@@ -54,7 +53,7 @@ spin.addEventListener('click', function () {
 	setTimeout(function () {
 		if (firstIndex === secondIndex && secondIndex === thirdIndex) {
 			alert('Selamat, kamu menang!')
-			saldo += 15000
+			saldo += 10000
 			updateSaldo()
 		}
 	}, 300)
@@ -65,7 +64,6 @@ const autoSpin = document.querySelector('.auto')
 autoSpin.addEventListener('click', function () {
 	if (saldo < 1000) {
 		alert('Saldo tidak cukup untuk bermain!')
-		return
 	}
 
 	const interval = setInterval(function () {
@@ -89,10 +87,54 @@ autoSpin.addEventListener('click', function () {
 				secondIndex === thirdIndex
 			) {
 				alert('Selamat, kamu menang!')
-				saldo += 15000
+				saldo += 10000
 				updateSaldo()
 			}
 		}, 300)
+	}, 1200)
+
+	const stopSpin = document.querySelector('.stop')
+
+	stopSpin.addEventListener('click', function () {
+		clearInterval(interval)
+	})
+})
+
+const tenSpin = document.querySelector('.tenSpin')
+
+tenSpin.addEventListener('click', function () {
+	let spinCount = 0
+
+	const interval = setInterval(function () {
+		if (saldo < 1000) {
+			clearInterval(interval)
+			alert('Saldo tidak cukup untuk bermain!')
+			return
+		}
+
+		saldo -= 1000
+		updateSaldo()
+
+		const firstIndex = spinImage(firstImage)
+		const secondIndex = spinImage(secondImage)
+		const thirdIndex = spinImage(thirdImage)
+
+		setTimeout(function () {
+			if (
+				saldo >= 0 &&
+				firstIndex === secondIndex &&
+				secondIndex === thirdIndex
+			) {
+				alert('Selamat, kamu menang!')
+				saldo += 10000
+				updateSaldo()
+			}
+		}, 300)
+
+		spinCount++
+		if (spinCount >= 10) {
+			clearInterval(interval)
+		}
 	}, 1200)
 
 	const stopSpin = document.querySelector('.stop')
