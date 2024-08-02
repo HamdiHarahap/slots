@@ -1,1 +1,1 @@
-![fruitslot](https://github.com/user-attachments/assets/146fbf87-1808-4882-a0e5-c8d380b6b4a8)
+![fruitslot](https://github.com/user-attachments/assets/9b137e1c-ce0a-47a8-a22a-adc96555518e)
