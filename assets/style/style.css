@@ -14,7 +14,7 @@ body {
 	text-align: center;
 	justify-content: center;
 	background-color: #111729;
-	color: #ffffff;
+	color: #eef7ff;
 }
 
 section {
@@ -38,6 +38,7 @@ img {
 	border: 2px solid;
 	background-color: #6482ad;
 	border-radius: 35px;
+	border-color: #83b4ff;
 }
 
 .image {
@@ -77,6 +78,29 @@ img {
 	flex-wrap: wrap;
 }
 
+.bet-container {
+	padding: 10px;
+	border: 2px solid;
+	border-color: #83b4ff;
+	border-radius: 20px;
+	width: 365px;
+	gap: 10px;
+	flex-wrap: wrap;
+	display: none;
+	position: absolute;
+	top: 62%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #6482ad;
+	padding: 20px;
+	z-index: 1000;
+}
+
+.blur {
+	filter: blur(1.5px);
+	pointer-events: none;
+}
+
 @media screen and (max-width: 768px) {
 	html,
 	body {
@@ -85,7 +109,7 @@ img {
 	}
 
 	section {
-		gap: 2px;
+		gap: 1px;
 	}
 
 	h1 {
@@ -97,7 +121,8 @@ img {
 	}
 
 	.spin-container {
-		width: 300px;
+		width: 350px;
+		gap: 10px;
 	}
 
 	.image-container {

@@ -10,6 +10,8 @@ const images = [
 const deposit = document.querySelector('.saldo')
 let saldo = 0
 
+const jumlahSaldo = document.querySelector('.data-saldo')
+
 function updateSaldo() {
 	jumlahSaldo.textContent = `${saldo}`
 }
@@ -20,8 +22,6 @@ deposit.addEventListener('click', function () {
 	alert(`Saldo masuk sebesar: ${isiSaldo}`)
 	updateSaldo()
 })
-
-const jumlahSaldo = document.querySelector('.data-saldo')
 
 const firstImage = document.querySelector('.first')
 const secondImage = document.querySelector('.second')
@@ -36,10 +36,23 @@ function spinImage(element) {
 	return randomIndex
 }
 
+let yourBet = 800
+
+const bets = document.querySelectorAll('.bet')
+const dataBet = document.querySelector('.data-bet')
+
+bets.forEach((bet) => {
+	bet.addEventListener('click', function () {
+		yourBet = parseInt(bet.textContent)
+		alert(`Anda bertaruh di ${yourBet}`)
+		dataBet.textContent = `${yourBet}`
+	})
+})
+
 const spin = document.querySelector('.spin')
 
 function singleSpin() {
-	saldo -= 1000
+	saldo -= yourBet
 	updateSaldo()
 
 	const firstIndex = spinImage(firstImage)
@@ -49,14 +62,14 @@ function singleSpin() {
 	setTimeout(function () {
 		if (firstIndex === secondIndex && secondIndex === thirdIndex) {
 			alert('Selamat, kamu menang!')
-			saldo += 10000
+			saldo += yourBet * 10
 			updateSaldo()
 		}
 	}, 300)
 }
 
 spin.addEventListener('click', function () {
-	if (saldo < 1000) {
+	if (saldo < yourBet) {
 		alert('Saldo tidak cukup untuk bermain!')
 		return
 	}
@@ -65,13 +78,13 @@ spin.addEventListener('click', function () {
 
 const autoSpin = document.querySelector('.auto')
 autoSpin.addEventListener('click', function () {
-	if (saldo < 1000) {
+	if (saldo < yourBet) {
 		alert('Saldo tidak cukup untuk bermain!')
 		return
 	}
 
 	const interval = setInterval(function () {
-		if (saldo < 1000) {
+		if (saldo < yourBet) {
 			clearInterval(interval)
 			alert('Saldo tidak cukup untuk bermain!')
 			return
@@ -89,7 +102,7 @@ function spinMultipleTimes(count) {
 	let spinCount = 0
 
 	const interval = setInterval(function () {
-		if (saldo < 1000) {
+		if (saldo < yourBet) {
 			clearInterval(interval)
 			alert('Saldo tidak cukup untuk bermain!')
 			return
@@ -127,4 +140,25 @@ fiftySpin.addEventListener('click', function () {
 const hundredSpin = document.querySelector('.hundredSpin')
 hundredSpin.addEventListener('click', function () {
 	spinMultipleTimes(100)
+})
+
+const betContainer = document.querySelector('.bet-container')
+const changeBetButton = document.querySelector('.change-bet')
+
+function addBlur() {
+	document.querySelector('.wrapper').classList.add('blur')
+}
+
+function removeBlur() {
+	document.querySelector('.wrapper').classList.remove('blur')
+}
+
+changeBetButton.addEventListener('click', function () {
+	addBlur()
+	betContainer.style.display = 'flex'
+})
+
+betContainer.addEventListener('click', function () {
+	removeBlur()
+	betContainer.style.display = 'none'
 })
