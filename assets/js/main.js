@@ -8,6 +8,7 @@ const images = [
 ]
 
 const deposit = document.querySelector('.saldo')
+
 let saldo = 0
 
 const jumlahSaldo = document.querySelector('.data-saldo')
@@ -145,20 +146,12 @@ hundredSpin.addEventListener('click', function () {
 const betContainer = document.querySelector('.bet-container')
 const changeBetButton = document.querySelector('.change-bet')
 
-function addBlur() {
-	document.querySelector('.wrapper').classList.add('blur')
-}
-
-function removeBlur() {
-	document.querySelector('.wrapper').classList.remove('blur')
-}
-
 changeBetButton.addEventListener('click', function () {
-	addBlur()
+	document.querySelector('.wrapper').classList.add('blur')
 	betContainer.style.display = 'flex'
 })
 
 betContainer.addEventListener('click', function () {
-	removeBlur()
+	document.querySelector('.wrapper').classList.remove('blur')
 	betContainer.style.display = 'none'
 })
