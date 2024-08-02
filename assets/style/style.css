@@ -81,7 +81,7 @@ img {
 	html,
 	body {
 		overflow-x: hidden;
-		padding: 0 10px;
+		padding: 0;
 	}
 
 	section {
