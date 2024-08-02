@@ -87,6 +87,8 @@ img {
 	gap: 10px;
 	flex-wrap: wrap;
 	display: none;
+	align-items: center;
+	justify-content: center;
 	position: absolute;
 	top: 62%;
 	left: 50%;
@@ -132,5 +134,11 @@ img {
 
 	.btn:hover {
 		background-color: #7fa1c3;
+	}
+
+	.bet-container {
+		width: 335px;
+		padding: 10px 5px;
+		gap: 5px;
 	}
 }
