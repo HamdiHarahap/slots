@@ -20,7 +20,10 @@ function updateSaldo() {
 deposit.addEventListener('click', function () {
 	const isiSaldo = prompt('Masukkan jumlah saldo!')
 	saldo += parseInt(isiSaldo)
-	alert(`Saldo masuk sebesar: ${isiSaldo}`)
+	Swal.fire({
+		icon: 'info',
+		text: `Saldo masuk sebesar : ${isiSaldo}`,
+	})
 	updateSaldo()
 })
 
@@ -45,7 +48,10 @@ const dataBet = document.querySelector('.data-bet')
 bets.forEach((bet) => {
 	bet.addEventListener('click', function () {
 		yourBet = parseInt(bet.textContent)
-		alert(`Anda bertaruh di ${yourBet}`)
+		Swal.fire({
+			icon: 'info',
+			text: `Anda bertaruh di : ${yourBet}`,
+		})
 		dataBet.textContent = `${yourBet}`
 	})
 })
@@ -62,7 +68,11 @@ function singleSpin() {
 
 	setTimeout(function () {
 		if (firstIndex === secondIndex && secondIndex === thirdIndex) {
-			alert('Selamat, kamu menang!')
+			Swal.fire({
+				icon: 'success',
+				title: 'Yayyy..',
+				text: `Selamat kamu menang ${yourBet * 10}`,
+			})
 			saldo += yourBet * 10
 			updateSaldo()
 		}
@@ -71,7 +81,11 @@ function singleSpin() {
 
 spin.addEventListener('click', function () {
 	if (saldo < yourBet) {
-		alert('Saldo tidak cukup untuk bermain!')
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Saldo tidak cukup untuk bermain!',
+		})
 		return
 	}
 	singleSpin()
@@ -80,14 +94,22 @@ spin.addEventListener('click', function () {
 const autoSpin = document.querySelector('.auto')
 autoSpin.addEventListener('click', function () {
 	if (saldo < yourBet) {
-		alert('Saldo tidak cukup untuk bermain!')
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Saldo tidak cukup untuk bermain!',
+		})
 		return
 	}
 
 	const interval = setInterval(function () {
 		if (saldo < yourBet) {
 			clearInterval(interval)
-			alert('Saldo tidak cukup untuk bermain!')
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: 'Saldo tidak cukup untuk bermain!',
+			})
 			return
 		}
 		singleSpin()
@@ -105,7 +127,11 @@ function spinMultipleTimes(count) {
 	const interval = setInterval(function () {
 		if (saldo < yourBet) {
 			clearInterval(interval)
-			alert('Saldo tidak cukup untuk bermain!')
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: 'Saldo tidak cukup untuk bermain!',
+			})
 			return
 		}
 
