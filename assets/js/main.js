@@ -1,16 +1,16 @@
+feather.replace()
+
 const images = [
-	'assets/images/apple.png',
-	'assets/images/cherries.png',
-	'assets/images/coconut.png',
-	'assets/images/guava.png',
-	'assets/images/mangosteen.png',
-	'assets/images/strawberry.png',
+	{ src: 'assets/images/apple.png', id: 1 },
+	{ src: 'assets/images/cherries.png', id: 2 },
+	{ src: 'assets/images/coconut.png', id: 3 },
+	{ src: 'assets/images/guava.png', id: 4 },
+	{ src: 'assets/images/mangosteen.png', id: 5 },
+	{ src: 'assets/images/strawberry.png', id: 6 },
 ]
 
 const deposit = document.querySelector('.saldo')
-
 let saldo = 0
-
 const jumlahSaldo = document.querySelector('.data-saldo')
 
 function updateSaldo() {
@@ -22,7 +22,7 @@ deposit.addEventListener('click', function () {
 	saldo += parseInt(isiSaldo)
 	Swal.fire({
 		icon: 'info',
-		text: `Saldo masuk sebesar : ${isiSaldo}`,
+		text: `Saldo masuk sebesar: ${isiSaldo}`,
 	})
 	updateSaldo()
 })
@@ -33,11 +33,13 @@ const thirdImage = document.querySelector('.third')
 
 function spinImage(element) {
 	const randomIndex = Math.floor(Math.random() * images.length)
-	const image = document.createElement('img')
-	image.src = images[randomIndex]
+	const image = images[randomIndex]
+	const imgElement = document.createElement('img')
+	imgElement.src = image.src
+	imgElement.id = image.id
 	element.innerHTML = ''
-	element.appendChild(image)
-	return randomIndex
+	element.appendChild(imgElement)
+	return image.id
 }
 
 let yourBet = 800
@@ -50,7 +52,7 @@ bets.forEach((bet) => {
 		yourBet = parseInt(bet.textContent)
 		Swal.fire({
 			icon: 'info',
-			text: `Anda bertaruh di : ${yourBet}`,
+			text: `Anda bertaruh di: ${yourBet}`,
 		})
 		dataBet.textContent = `${yourBet}`
 	})
@@ -62,18 +64,39 @@ function singleSpin() {
 	saldo -= yourBet
 	updateSaldo()
 
-	const firstIndex = spinImage(firstImage)
-	const secondIndex = spinImage(secondImage)
-	const thirdIndex = spinImage(thirdImage)
+	const firstId = spinImage(firstImage)
+	const secondId = spinImage(secondImage)
+	const thirdId = spinImage(thirdImage)
 
 	setTimeout(function () {
-		if (firstIndex === secondIndex && secondIndex === thirdIndex) {
+		if (firstId === secondId && secondId === thirdId) {
+			let reward = 0
+			switch (firstId) {
+				case 1:
+					reward = yourBet * 10
+					break
+				case 2:
+					reward = yourBet * 12
+					break
+				case 3:
+					reward = yourBet * 15
+					break
+				case 4:
+					reward = yourBet * 20
+					break
+				case 5:
+					reward = yourBet * 22
+					break
+				case 6:
+					reward = yourBet * 25
+					break
+			}
 			Swal.fire({
 				icon: 'success',
 				title: 'Yayyy..',
-				text: `Selamat kamu menang ${yourBet * 10}`,
+				text: `Selamat kamu menang ${reward}`,
 			})
-			saldo += yourBet * 10
+			saldo += reward
 			updateSaldo()
 		}
 	}, 300)
@@ -180,4 +203,11 @@ changeBetButton.addEventListener('click', function () {
 betContainer.addEventListener('click', function () {
 	document.querySelector('.wrapper').classList.remove('blur')
 	betContainer.style.display = 'none'
+})
+
+const info = document.querySelector('.info-icon')
+info.addEventListener('click', function () {
+	const infoContainer = document.querySelector('.info-container')
+	infoContainer.classList.toggle('show')
+	document.querySelector('.wrapper').classList.toggle('blur')
 })
