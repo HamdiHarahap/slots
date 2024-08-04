@@ -169,7 +169,7 @@ img {
 	}
 
 	h1 {
-		margin: 0;
+		margin-bottom: 20px;
 	}
 
 	img {
@@ -182,7 +182,7 @@ img {
 	}
 
 	.image-container {
-		margin-top: 15px;
+		margin-top: 20px;
 		gap: 20px;
 		width: 350px;
 	}
