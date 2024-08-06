@@ -207,7 +207,6 @@ betContainer.addEventListener('click', function () {
 
 const info = document.querySelector('.info-icon')
 info.addEventListener('click', function () {
-	const infoContainer = document.querySelector('.info-container')
-	infoContainer.classList.toggle('show')
+	document.querySelector('.info-container').classList.toggle('show')
 	document.querySelector('.wrapper').classList.toggle('blur')
 })
