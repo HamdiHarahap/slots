@@ -27,12 +27,21 @@ body {
 	gap: 20px;
 }
 
-.version {
-	left: 90%;
+.version-container {
+	left: 88%;
 	position: absolute;
 	cursor: pointer;
 	display: flex;
+	flex-direction: column;
 	padding: 0 30px;
+	border: 2px solid;
+}
+
+.version {
+	justify-content: space-between;
+	border: 2px solid;
+	width: 110px;
+	display: flex;
 }
 
 .info-icon {
