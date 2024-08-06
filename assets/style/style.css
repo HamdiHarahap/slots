@@ -34,14 +34,27 @@ body {
 	display: flex;
 	flex-direction: column;
 	padding: 0 30px;
-	border: 2px solid;
 }
 
 .version {
+	border-radius: 13px;
+	padding: 3px 7px;
 	justify-content: space-between;
-	border: 2px solid;
 	width: 110px;
 	display: flex;
+}
+
+.version:last-child {
+	display: none;
+	background-color: #6482ad;
+}
+
+.show {
+	display: flex !important;
+}
+
+.hidden {
+	display: none !important;
 }
 
 .info-icon {
@@ -60,10 +73,6 @@ body {
 	border-radius: 35px;
 	padding: 20px;
 	z-index: 1000;
-}
-
-.show {
-	display: flex;
 }
 
 .info-box {
