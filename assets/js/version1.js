@@ -1,3 +1,5 @@
+feather.replace()
+
 const images = [
 	{ src: 'assets/images/apple.png', id: 1 },
 	{ src: 'assets/images/cherries.png', id: 2 },

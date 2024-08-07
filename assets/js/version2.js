@@ -1,10 +1,12 @@
+feather.replace()
+
 const images = [
-	{ src: 'assets/images/apple.png', id: 1 },
-	{ src: 'assets/images/cherries.png', id: 2 },
-	{ src: 'assets/images/coconut.png', id: 3 },
-	{ src: 'assets/images/guava.png', id: 4 },
-	{ src: 'assets/images/mangosteen.png', id: 5 },
-	{ src: 'assets/images/strawberry.png', id: 6 },
+	{ src: '/assets/images/apple.png', id: 1 },
+	{ src: '/assets/images/cherries.png', id: 2 },
+	{ src: '/assets/images/coconut.png', id: 3 },
+	{ src: '/assets/images/guava.png', id: 4 },
+	{ src: '/assets/images/mangosteen.png', id: 5 },
+	{ src: '/assets/images/strawberry.png', id: 6 },
 ]
 
 const deposit = document.querySelector('.saldo')
@@ -80,18 +82,23 @@ function calculateReward(imageId) {
 }
 
 function handleSpin() {
-	const firstId = spinImage(
-		firstImage,
-		images[Math.floor(Math.random() * images.length)]
+	let firstImageIndex, secondImageIndex, thirdImageIndex
+
+	firstImageIndex = Math.floor(Math.random() * images.length)
+	const firstId = spinImage(firstImage, images[firstImageIndex])
+
+	do {
+		secondImageIndex = Math.floor(Math.random() * images.length)
+	} while (secondImageIndex === firstImageIndex)
+	const secondId = spinImage(secondImage, images[secondImageIndex])
+
+	do {
+		thirdImageIndex = Math.floor(Math.random() * images.length)
+	} while (
+		thirdImageIndex === firstImageIndex ||
+		thirdImageIndex === secondImageIndex
 	)
-	const secondId = spinImage(
-		secondImage,
-		images[Math.floor(Math.random() * images.length)]
-	)
-	const thirdId = spinImage(
-		thirdImage,
-		images[Math.floor(Math.random() * images.length)]
-	)
+	const thirdId = spinImage(thirdImage, images[thirdImageIndex])
 
 	setTimeout(function () {
 		if (firstId === secondId && secondId === thirdId) {
