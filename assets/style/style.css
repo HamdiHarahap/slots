@@ -193,6 +193,7 @@ a {
 
 	.version-container {
 		left: 70%;
+		top: 2.5%;
 		position: absolute;
 		cursor: pointer;
 		display: flex;
